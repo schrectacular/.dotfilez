@@ -1,7 +1,12 @@
+Setup to edit locally:
+mkdir ~/.configs
+cd ~/.configs
+git init
+git remote add origin git@github.com:mattington/.configs.git
+git pull origin master
+
 Set default shell:
 chsh -s /bin/zsh
 
 Install oh-my-zsh:
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-
-ssh://git@github.com/mattington/.configs.git
