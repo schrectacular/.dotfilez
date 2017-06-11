@@ -1,6 +1,6 @@
 Setup to edit locally:
 
-Might need to <a href="https://help.github.com/articles/connecting-to-github-with-ssh/">set up SSH</a>
+Might need to [set up SSH]("https://help.github.com/articles/connecting-to-github-with-ssh/")
 
 mkdir ~/.configs
 cd ~/.configs
@@ -12,6 +12,6 @@ Set default shell:
 chsh -s /bin/zsh
 
 Optional:
-Install <a href="https://github.com/sorin-ionescu/prezto">prezto</a>
+Install [prezto](https://github.com/sorin-ionescu/prezto)
 Install oh-my-zsh:
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
