@@ -1,12 +1,17 @@
 Setup to edit locally:
+
+Might need to <a href="https://help.github.com/articles/connecting-to-github-with-ssh/">set up SSH</a>
+
 mkdir ~/.configs
 cd ~/.configs
 git init
-git remote add origin git@github.com:mattington/.configs.git
+git remote add origin git@github.com:schrectacular/.configs.git
 git pull origin master
 
 Set default shell:
 chsh -s /bin/zsh
 
+Optional:
+Install <a href="https://github.com/sorin-ionescu/prezto">prezto</a>
 Install oh-my-zsh:
 curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
