@@ -23,22 +23,17 @@ set nocompatible
  "General
  Bundle 'scrooloose/nerdtree'
  Bundle 'fholgado/minibufexpl.vim'
- Bundle 'tpope/vim-fugitive'
- Bundle 'tpope/vim-surround'
- Bundle 'tpope/vim-repeat'
+" Bundle 'tpope/vim-fugitive'
+" Bundle 'tpope/vim-surround'
+" Bundle 'tpope/vim-repeat'
  Bundle 'taglist.vim'
  Bundle 'bling/vim-airline'
- Bundle 'vim-scripts/YankRing.vim'
+" Bundle 'vim-scripts/YankRing.vim'
 
- "Web
- Bundle 'HTML-AutoCloseTag'
- Bundle 'gregsexton/MatchTag'
-
- "Languages
- Bundle 'rust-lang/rust.vim'
- Bundle 'cespare/vim-toml'
- Plugin 'elixir-lang/vim-elixir'
-
+ "Languages and highlighting
+ "Plugin 'elixir-lang/vim-elixir'
+ Bundle 'elixir-lang/vim-elixir'
+ Bundle 'stephpy/vim-yaml'
  "Color theme
  Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
  "Bundle 'altercation/vim-colors-solarized'
@@ -100,7 +95,7 @@ imap <c-f> <c-g>u<Esc>[s1z=`]a<c-g>u
 nmap <c-f> [s1z=<c-o>
 
 
-" save some regexp
+" save some regex
 source ~/.regexlist.vim
 
 set clipboard=unnamed
@@ -136,8 +131,8 @@ let mapleader=','
 "inoremap jk <Esc>
 
 " Don't move your fingers to arrow keys for history
-cnoremap <C-k> <Up>
-cnoremap <C-j> <Down>
+"cnoremap <C-k> <Up>
+"cnoremap <C-j> <Down>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')

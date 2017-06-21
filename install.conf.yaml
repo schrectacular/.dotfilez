@@ -1,0 +1,38 @@
+- defaults:
+        link:
+                create: true
+                relink: true
+
+- clean: ['~']
+
+- link:
+        ~/.vimrc: vimrc
+        # zprezto needs to live here
+        ~/.zprezto: zprezto
+        # zprezto setup does this programatically, but sets up these links
+        ~/.zlogin: zprezto/runcoms/zlogin
+        ~/.zlogout: zprezto/runcoms/zlogout
+        ~/.zprofile: zprezto/runcoms/zprofile
+        ~/.zshenv: zprezto/runcoms/zshenv
+        ~/.zshrc: zprezto/runcoms/zshrc
+        # I modified these meself
+        ~/.zpreztorc: zpreztorc
+
+# Homebrew stuff
+- tap:
+    - caskroom/fonts
+
+- brew: [git, zsh, cask, tmux]
+
+- cask: [macvim, iterm2]
+
+- shell:
+        # update submodules
+        - git submodule update --init --recursive
+        # if zsh isn't default shell, then make it so. Asks for password
+        - '[[ $SHELL == "/bin/zsh" ]] || chsh -s /bin/zsh'
+        # vimrc uses this file to store recent regular expressions
+        - touch ~/.regexlist.vim
+        # update Vundle
+        - vim +PluginInstall +qall
+
