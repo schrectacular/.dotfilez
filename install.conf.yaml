@@ -18,13 +18,16 @@
         # I modified these meself
         ~/.zpreztorc: zpreztorc
 
+        #this is for vim:
+        ~/.vim/bundle/Vundle.vim: Vundle.vim
+
 # Homebrew stuff
-- tap:
-    - caskroom/fonts
-
-- brew: [git, zsh, cask, tmux]
-
-- cask: [macvim, iterm2]
+#- tap:
+#    - caskroom/fonts
+#
+#- brew: [git, zsh, cask, tmux]
+#
+#- cask: [macvim, iterm2]
 
 - shell:
         # update submodules
@@ -35,4 +38,10 @@
         - touch ~/.regexlist.vim
         # update Vundle
         - vim +PluginInstall +qall
+        - |
+            if [[ $(uname -a) =~ "Darwin" ]]; then
+                echo "Running osx"
+                touch haha
+            fi
+        - echo "ok"
 

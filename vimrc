@@ -11,12 +11,12 @@ set nocompatible
 "
  filetype off                   " required!
 
- set rtp+=~/.vim/bundle/vundle/
+ set rtp+=~/.vim/bundle/Vundle.vim
  call vundle#rc()
 
  " let Vundle manage Vundle
  " required!  
- Bundle 'gmarik/vundle'
+ Bundle 'VundleVim/Vundle.vim'
 
  " Bundles here:
 
@@ -34,10 +34,9 @@ set nocompatible
  "Plugin 'elixir-lang/vim-elixir'
  Bundle 'elixir-lang/vim-elixir'
  Bundle 'stephpy/vim-yaml'
+
  "Color theme
- Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
- "Bundle 'altercation/vim-colors-solarized'
- "Bundle 'nelstrom/vim-blackboard'
+ Plugin 'chriskempson/base16-vim'
 
  "Javascript
  "Bundle 'JavaScript-Indent'
@@ -173,20 +172,14 @@ set softtabstop=4 shiftwidth=4 expandtab
 set textwidth=0
 set wrapmargin=0
 
+" show status line
+set laststatus=2
 
 " Coloring stuff
 
-"BLACKBOARD
-" color blackboard
-
-"set background=light
-"colorscheme solarized
-
-color tomorrow
-"color tomorrow-night
-"color tomorrow-night-blue
-"color tomorrow-night-eighties
-"color tomorrow-night-bright
+set background=light
+" Vim won't complain if it can't find this
+silent! colorscheme base16-tomorrow
 
 if has("win32")
   set guifont=Consolas:h11
