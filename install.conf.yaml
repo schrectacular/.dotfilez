@@ -37,17 +37,22 @@
         - |
           if [[ $(uname -a) =~ "Darwin" ]]; then
               #run osx things here
+              echo "placeholder";
           fi
         - |
           if [[ $(uname) == "Linux" ]]; then
             #run linux things here
             if [[ $(which apt | tail -c 5) == "/apt" ]]; then
                 [[ $(which tmux | tail -c 6) == "/tmux" ]] || sudo apt install tmux
+                # Vim plugin taglist depends on ctags
+                [[ $(which ctags | tail -c 7) == "/ctags" ]] || sudo apt install tmux
             fi
           fi
-
         # if zsh isn't default shell but it is found, then make it default. Asks for password
-        - ([[ $SHELL == "/bin/zsh" ]] && [[ $(which zsh | tail -c 5) == "/zsh" ]]) || chsh -s /bin/zsh
+        - |
+          if [[ ! $SHELL == "/bin/zsh" ]] && [[ $(which zsh | tail -c 5) == "/zsh" ]]; then 
+            chsh -s /bin/zsh
+          fi
         # vimrc uses this file to store recent regular expressions
         - touch ~/.regexlist.vim
         # update Vundle

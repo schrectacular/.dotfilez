@@ -1,9 +1,7 @@
 ### Quick Start
 
-Just run:
 ```shell
-git clone git@github.com:schrectacular/.dotfilez.git
-bash ~/.dotfilez/install
+git clone https://github.com/schrectacular/.dotfilez; bash ~/.dotfilez/install
 ```
 
 ### Setup to edit locally
