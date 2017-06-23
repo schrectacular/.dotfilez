@@ -20,7 +20,6 @@
     ~/.zshrc: zprezto/runcoms/zshrc
     # I modified these meself
     ~/.zpreztorc: zpreztorc
-
     #this is for vim:
     ~/.vim/bundle/Vundle.vim: Vundle.vim
 
@@ -48,11 +47,11 @@
         fi
     fi
   - |
-    # if zsh isn't default shell but it is found, then make it default. Asks for password
+    # if zsh isn't default shell but it is found, then make it default.
     if [[ -x "$(command -v zsh)" && $SHELL != "/bin/zsh" ]]; then 
+        # This seems to fail on some linux distros because it needs password
         chsh -s /bin/zsh
     fi
   - touch ~/.regexlist.vim
     # update Vundle
   - vim +PluginInstall +qall
-
