@@ -9,17 +9,17 @@
 - shell: [git submodule update --init --recursive]
 
 - link:
-    ~/.vimrc: vimrc
-    # zprezto needs to live here
+    # link the zprezto submodule directory
     ~/.zprezto: zprezto
     # zprezto setup does this programatically, but sets up these links
     ~/.zlogin: zprezto/runcoms/zlogin
     ~/.zlogout: zprezto/runcoms/zlogout
-    ~/.zprofile: zprofile
     ~/.zshenv: zprezto/runcoms/zshenv
-    ~/.zshrc: zprezto/runcoms/zshrc
     # I modified these meself
     ~/.zpreztorc: zpreztorc
+    ~/.zshrc: zshrc
+    ~/.zprofile: zprofile
+    ~/.vimrc: vimrc
     #this is for vim:
     ~/.vim/bundle/Vundle.vim: Vundle.vim
 
