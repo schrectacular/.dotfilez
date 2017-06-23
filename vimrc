@@ -118,16 +118,6 @@ set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
-" Set a more convinient map leader
-let mapleader=','
-
-" Fast exit from insert mode by pressing jk simultaneously
-"inoremap kj <Esc>
-"inoremap jk <Esc>
-
-" Don't move your fingers to arrow keys for history
-"cnoremap <C-k> <Up>
-"cnoremap <C-j> <Down>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
@@ -162,9 +152,6 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:‣\ ,eol:¬
 
-" good for perl
-set softtabstop=4 shiftwidth=4 expandtab
-
 set textwidth=0
 set wrapmargin=0
 
@@ -183,7 +170,23 @@ if has("win32")
   au GUIEnter * simalt ~x
 endif
 
-" END MY STUFF
+" Deprecated stuff:
+
+" good for perl
+"set softtabstop=4 shiftwidth=4 expandtab
+
+" Set a more convinient map leader
+" let mapleader=','
+
+" Fast exit from insert mode by pressing jk simultaneously
+"inoremap kj <Esc>
+"inoremap jk <Esc>
+
+" Don't move your fingers to arrow keys for history
+"cnoremap <C-k> <Up>
+"cnoremap <C-j> <Down>
+
+"""""""""""""""""""""""""""""""" END MY STUFF """"""""""""""""""""""""""""""""
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
