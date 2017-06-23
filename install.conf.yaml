@@ -47,13 +47,11 @@
             [ -x "$(command -v zsh)" ] || sudo apt install -y zsh
         fi
     fi
-    # if zsh isn't default shell but it is found, then make it default. Asks for password
   - |
-
+    # if zsh isn't default shell but it is found, then make it default. Asks for password
     if [[ -x "$(command -v zsh)" && $SHELL != "/bin/zsh" ]]; then 
         chsh -s /bin/zsh
     fi
-    # vimrc uses this file to store recent regular expressions
   - touch ~/.regexlist.vim
     # update Vundle
   - vim +PluginInstall +qall
