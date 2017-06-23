@@ -1,60 +1,58 @@
 - defaults:
-        link:
-                create: true
-                relink: true
+  link:
+    create: true
+    relink: true
 
 - clean: ['~']
 
 - shell:
-        # update submodules this needs to be done before links
-        - git submodule update --init --recursive
+  # update submodules this needs to be done before links
+  - git submodule update --init --recursive
 
 - link:
-        ~/.vimrc: vimrc
-        # zprezto needs to live here
-        ~/.zprezto: zprezto
-        # zprezto setup does this programatically, but sets up these links
-        ~/.zlogin: zprezto/runcoms/zlogin
-        ~/.zlogout: zprezto/runcoms/zlogout
-        ~/.zprofile: zprezto/runcoms/zprofile
-        ~/.zshenv: zprezto/runcoms/zshenv
-        ~/.zshrc: zprezto/runcoms/zshrc
-        # I modified these meself
-        ~/.zpreztorc: zpreztorc
+  ~/.vimrc: vimrc
+  # zprezto needs to live here
+  ~/.zprezto: zprezto
+  # zprezto setup does this programatically, but sets up these links
+  ~/.zlogin: zprezto/runcoms/zlogin
+  ~/.zlogout: zprezto/runcoms/zlogout
+  ~/.zprofile: zprezto/runcoms/zprofile
+  ~/.zshenv: zprezto/runcoms/zshenv
+  ~/.zshrc: zprezto/runcoms/zshrc
+  # I modified these meself
+  ~/.zpreztorc: zpreztorc
+  #this is for vim:
+  ~/.vim/bundle/Vundle.vim: Vundle.vim
 
-        #this is for vim:
-        ~/.vim/bundle/Vundle.vim: Vundle.vim
-
-# Homebrew stuff
-- tap:
-    - caskroom/fonts
+  # Homebrew stuff
+- tap: [caskroom/fonts]
 
 - brew: [zsh, cask, tmux]
 
 - cask: [macvim, iterm2]
 
 - shell:
-        - |
-          if [[ $(uname -a) =~ "Darwin" ]]; then
-              #sensible defaults for macos
-              bash macos
-          fi
-        - |
-          if [[ $(uname) == "Linux" ]]; then #system is Linux
-            if [ -x "$(command -v apt-get)" ]; then #system has apt-get
-                [ -x "$(command -v vim)" ] || sudo apt install -y vim
-                [ -x "$(command -v tmux)" ] || sudo apt install -y tmux
-                # Vim plugin taglist depends on ctags
-                [ -x "$(command -v ctags)" ] || sudo apt install -y ctags
-                [ -x "$(command -v zsh)" ] || sudo apt install -y zsh
-            fi
-          fi
-        # if zsh isn't default shell but it is found, then make it default. Asks for password
-        - |
-          if [[ ! $SHELL == "/bin/zsh" ]] && [[ $(command -v zsh >/dev/null 2>&1) ]]; then 
-            chsh -s /bin/zsh
-          fi
-        # vimrc uses this file to store recent regular expressions
-        - touch ~/.regexlist.vim
-        # update Vundle
-        - vim +PluginInstall +qall
+  - |
+    if [[ $(uname -a) =~ "Darwin" ]]; then
+      #sensible defaults for macos
+      bash macos
+    fi
+  - |
+    if [[ $(uname) == "Linux" ]]; then #system is Linux
+      if [ -x "$(command -v apt-get)" ]; then #system has apt-get
+        [ -x "$(command -v vim)" ] || sudo apt install -y vim
+        [ -x "$(command -v tmux)" ] || sudo apt install -y tmux
+        # Vim plugin taglist depends on ctags
+        [ -x "$(command -v ctags)" ] || sudo apt install -y ctags
+        [ -x "$(command -v zsh)" ] || sudo apt install -y zsh
+      fi
+    fi
+    # if zsh isn't default shell but it is found, then make it default. Asks for password
+  - |
+    if [[ -x "$(command -v zsh)" && $SHELL != "/bin/zsh" ]]; then 
+      chsh -s /bin/zsh
+    fi
+    # vimrc uses this file to store recent regular expressions
+  - touch ~/.regexlist.vim
+    # update Vundle
+  - vim +PluginInstall +qall
