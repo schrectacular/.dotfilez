@@ -42,10 +42,11 @@
         - |
           if [[ $(uname) == "Linux" ]]; then #system is Linux
             if [ -x "$(command -v apt-get)" ]; then #system has apt-get
-                [ -x "$(command -v tmux)" ] || sudo apt install tmux
+                [ -x "$(command -v vim)" ] || sudo apt install -y vim
+                [ -x "$(command -v tmux)" ] || sudo apt install -y tmux
                 # Vim plugin taglist depends on ctags
-                [ -x "$(command -v ctags)" ] || sudo apt install ctags
-                [ -x "$(command -v zsh)" ] || sudo apt install zsh
+                [ -x "$(command -v ctags)" ] || sudo apt install -y ctags
+                [ -x "$(command -v zsh)" ] || sudo apt install -y zsh
             fi
           fi
         # if zsh isn't default shell but it is found, then make it default. Asks for password
