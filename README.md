@@ -1,7 +1,9 @@
 ### Quick Start
 
 ```shell
-git clone https://github.com/schrectacular/.dotfilez; bash ~/.dotfilez/install
+git clone https://github.com/schrectacular/.dotfilez
+git submodule update --init --recursive
+bash ~/.dotfilez/install
 ```
 
 ### Setup to edit locally

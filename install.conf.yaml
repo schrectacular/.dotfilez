@@ -42,15 +42,16 @@
         - |
           if [[ $(uname) == "Linux" ]]; then
             #run linux things here
-            if [[ $(which apt | tail -c 5) == "/apt" ]]; then
-                [[ $(which tmux | tail -c 6) == "/tmux" ]] || sudo apt install tmux
+            if [[ $(command -v apt >/dev/null 2>&1) ]]; then
+                [[ $(command -v tmux >/dev/null 2>&1) ]] || sudo apt install tmux
                 # Vim plugin taglist depends on ctags
-                [[ $(which ctags | tail -c 7) == "/ctags" ]] || sudo apt install tmux
+                [[ $(command -v ctags >/dev/null 2>&1) ]] || sudo apt install ctags
+                [[ $(command -v zsh >/dev/null 2>&1) ]] || sudo apt install zsh
             fi
           fi
         # if zsh isn't default shell but it is found, then make it default. Asks for password
         - |
-          if [[ ! $SHELL == "/bin/zsh" ]] && [[ $(which zsh | tail -c 5) == "/zsh" ]]; then 
+          if [[ ! $SHELL == "/bin/zsh" ]] && [[ $(command -v zsh >/dev/null 2>&1) ]]; then 
             chsh -s /bin/zsh
           fi
         # vimrc uses this file to store recent regular expressions
