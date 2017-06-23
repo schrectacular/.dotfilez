@@ -2,7 +2,6 @@
 
 " MY STUFF
 
-
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
@@ -60,13 +59,14 @@ set nocompatible
  " Vundled plugins setup
 
 " For some reason this doesn't work when --remote flag is used
-let Tlist_Auto_Open = 0
+silent! let Tlist_Auto_Open = 0
 " close all folds except for current file let Tlist_File_Fold_Auto_Close = 1 " make tlist pane active when opened
 let Tlist_GainFocus_On_ToggleOpen = 0
 " self explanitory
 let Tlist_Exit_OnlyWindow = 1
 " remap F8 to toggle the Tlist window
 nnoremap <silent> <F8> :Tlist<CR>
+
 nnoremap <F9> :NERDTreeToggle<CR>
 
 " default minibuffer setup 
@@ -92,10 +92,6 @@ map <Leader>w :MBEbd!<cr>
 " when we undo, it jumps us to the start of that word! Handy!
 imap <c-f> <c-g>u<Esc>[s1z=`]a<c-g>u
 nmap <c-f> [s1z=<c-o>
-
-
-" save some regex
-source ~/.regexlist.vim
 
 set clipboard=unnamed
 
