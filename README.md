@@ -1,20 +1,19 @@
-### Setup to edit locally:
+### Quick Start
 
-Might need to [set up SSH](https://help.github.com/articles/connecting-to-github-with-ssh/)
-
+Just run:
 ```shell
-mkdir ~/.dotfilez[or whatever]
-cd ~/.dotfilez[or whatever]
-git init
-git remote add origin git@github.com:schrectacular/.dotfilez.git
-git pull origin master
+git clone git@github.com:schrectacular/.dotfilez.git
+bash ~/.dotfilez/install
 ```
 
-### Set default shell:
-```shell
-chsh -s /bin/zsh
-```
+### Setup to edit locally
 
-### Optional:
-
-#### Install [prezto](https://github.com/sorin-ionescu/prezto)
+- [Set up SSH](https://help.github.com/articles/connecting-to-github-with-ssh/)
+- Install git
+- |
+    ```shell
+    mkdir ~/.dotfilez; cd ~/.dotfilez
+    git init
+    git remote add origin git@github.com:schrectacular/.dotfilez.git
+    git pull origin master
+    ```
