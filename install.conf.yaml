@@ -5,6 +5,10 @@
 
 - clean: ['~']
 
+- shell:
+        # update submodules this needs to be done before links
+        - git submodule update --init --recursive
+
 - link:
         ~/.vimrc: vimrc
         # zprezto needs to live here
@@ -22,26 +26,29 @@
         ~/.vim/bundle/Vundle.vim: Vundle.vim
 
 # Homebrew stuff
-#- tap:
-#    - caskroom/fonts
-#
-#- brew: [git, zsh, cask, tmux]
-#
-#- cask: [macvim, iterm2]
+- tap:
+    - caskroom/fonts
+
+- brew: [zsh, cask, tmux]
+
+- cask: [macvim, iterm2]
 
 - shell:
-        # update submodules
-        - git submodule update --init --recursive
-        # if zsh isn't default shell, then make it so. Asks for password
-        - '[[ $SHELL == "/bin/zsh" ]] || chsh -s /bin/zsh'
+        - |
+          if [[ $(uname -a) =~ "Darwin" ]]; then
+              #run osx things here
+          fi
+        - |
+          if [[ $(uname) == "Linux" ]]; then
+            #run linux things here
+            if [[ $(which apt | tail -c 5) == "/apt" ]]; then
+                [[ $(which tmux | tail -c 6) == "/tmux" ]] || sudo apt install tmux
+            fi
+          fi
+
+        # if zsh isn't default shell but it is found, then make it default. Asks for password
+        - ([[ $SHELL == "/bin/zsh" ]] && [[ $(which zsh | tail -c 5) == "/zsh" ]]) || chsh -s /bin/zsh
         # vimrc uses this file to store recent regular expressions
         - touch ~/.regexlist.vim
         # update Vundle
         - vim +PluginInstall +qall
-        - |
-            if [[ $(uname -a) =~ "Darwin" ]]; then
-                echo "Running osx"
-                touch haha
-            fi
-        - echo "ok"
-
