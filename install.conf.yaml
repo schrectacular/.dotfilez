@@ -36,17 +36,16 @@
 - shell:
         - |
           if [[ $(uname -a) =~ "Darwin" ]]; then
-              #run osx things here
-              echo "placeholder";
+              #sensible defaults for macos
+              bash macos
           fi
         - |
-          if [[ $(uname) == "Linux" ]]; then
-            #run linux things here
-            if [[ $(command -v apt >/dev/null 2>&1) ]]; then
-                [[ $(command -v tmux >/dev/null 2>&1) ]] || sudo apt install tmux
+          if [[ $(uname) == "Linux" ]]; then #system is Linux
+            if [ -x "$(command -v apt-get)" ]; then #system has apt-get
+                [ -x "$(command -v tmux)" ] || sudo apt install tmux
                 # Vim plugin taglist depends on ctags
-                [[ $(command -v ctags >/dev/null 2>&1) ]] || sudo apt install ctags
-                [[ $(command -v zsh >/dev/null 2>&1) ]] || sudo apt install zsh
+                [ -x "$(command -v ctags)" ] || sudo apt install ctags
+                [ -x "$(command -v zsh)" ] || sudo apt install zsh
             fi
           fi
         # if zsh isn't default shell but it is found, then make it default. Asks for password
