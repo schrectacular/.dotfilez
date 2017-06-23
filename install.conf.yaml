@@ -15,7 +15,7 @@
     # zprezto setup does this programatically, but sets up these links
     ~/.zlogin: zprezto/runcoms/zlogin
     ~/.zlogout: zprezto/runcoms/zlogout
-    ~/.zprofile: zprezto/runcoms/zprofile
+    ~/.zprofile: zprofile
     ~/.zshenv: zprezto/runcoms/zshenv
     ~/.zshrc: zprezto/runcoms/zshrc
     # I modified these meself
