@@ -112,12 +112,36 @@ if has("vms")
 else
   set backup		" keep a backup file
 endif
+
+" Keep a backup file.
+set backup
+
+" Do not back up temporary files.
+set backupskip=/tmp/*,/private/tmp/*"
+
+" Store backup files in one place.
+set backupdir^=$HOME/.vim/backup//
+
+" Store swap files in one place.
+set dir^=$HOME/.vim/swap//
+
+" Store undo files in one place.
+set undodir^=$HOME/.vim/undo//
+
+" Store view files in one place.
+set viewdir=$HOME/.vim/view//
+
+" Save undo tree.
+set undofile
+
+" Allow undoing a reload from disk.
+set undoreload=1000
+
 set history=1000		" keep 50 lines of command line history
 set undolevels=1000
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
-
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')

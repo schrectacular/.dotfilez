@@ -5,8 +5,11 @@
 
 - clean: ['~']
 
-  # update submodules this needs to be done before links
-- shell: [git submodule update --init --recursive]
+- shell:
+      # Recursively update submodules. This needs to be done before links.
+    - git submodule update --init --recursive
+      # Ask for priveledges once at the top.
+    - sudo -v
 
 - link:
     # link the zprezto submodule directory
@@ -19,39 +22,47 @@
     ~/.zpreztorc: zpreztorc
     ~/.zshrc: zshrc
     ~/.zprofile: zprofile
+    # zprezto theme
+    # zsh-prompt-garret/prompt_garret_setup: ~/.zpreztorc
+    ~/.zprezto/modules/prompt/functions/prompt_garrett_setup: zsh-prompt-garrett/prompt_garrett_setup
+    ~/.zprezto/modules/prompt/functions/prompt_schrectacular_setup: prompt_schrectacular_setup
+    # vim
     ~/.vimrc: vimrc
-    #this is for vim:
     ~/.vim/bundle/Vundle.vim: Vundle.vim
 
 # Homebrew stuff
 - tap: [caskroom/fonts]
 
-- brew: [zsh, cask, tmux]
+- brew: [zsh, cask, tmux, emacs]
 
 - cask: [macvim, iterm2]
 
 - shell:
-  - |
+  - | # MacOS specific setup
     if [[ $(uname -a) =~ "Darwin" ]]; then
-        #sensible defaults for macos
-        bash macos
+        bash macos    #sensible defaults for macos
+        #open -g whatever.itermcolors
     fi
-  - |
-    if [[ $(uname) == "Linux" ]]; then #system is Linux
+  - | # Linux specific setup
+    if [[ $(uname) == "Linux" ]]; then
         if [ -x "$(command -v apt-get)" ]; then #system has apt-get
-            [ -x "$(command -v vim)" ] || sudo apt install -y vim
-            [ -x "$(command -v tmux)" ] || sudo apt install -y tmux
-            # Vim plugin taglist depends on ctags
-            [ -x "$(command -v ctags)" ] || sudo apt install -y ctags
-            [ -x "$(command -v zsh)" ] || sudo apt install -y zsh
+            declare -a cmdList=("vim" "tmux" "ctags" "zsh")
+            for cmd in ${cmdList[@]}; do
+                [ -x "$(command -v $cmd)" ] || sudo apt install -y $cmd
+            done
         fi
     fi
-  - |
-    # if zsh isn't default shell but it is found, then make it default.
+  - | # if zsh isn't default shell but it is found, then make it default.
     if [[ -x "$(command -v zsh)" && $SHELL != "/bin/zsh" ]]; then 
         # This seems to fail on some linux distros because it needs password
         chsh -s /bin/zsh
     fi
+    # at some point I used this file to store recent regexp, so touch it
   - touch ~/.regexlist.vim
-    # update Vundle
-  - vim +PluginInstall +qall
+  - | # make some directories for vim temporary files
+    declare -a dirList=("backup" "swap" "undo" "view")
+    for dir in ${dirList[@]}; do
+        mkdir -p ~/.vim/$dir
+    done
+    # Install, then update all Vundle plugins
+  - vim +PluginInstall +PluginUpdate +qall
