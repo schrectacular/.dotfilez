@@ -22,10 +22,8 @@
     ~/.zpreztorc: zpreztorc
     ~/.zshrc: zshrc
     ~/.zprofile: zprofile
-    # zprezto theme
-    # zsh-prompt-garret/prompt_garret_setup: ~/.zpreztorc
-    ~/.zprezto/modules/prompt/functions/prompt_garrett_setup: zsh-prompt-garrett/prompt_garrett_setup
-    ~/.zprezto/modules/prompt/functions/prompt_schrectacular_setup: prompt_schrectacular_setup
+    # zprezto theme (placeholder)
+    # ~/.zprezto/modules/prompt/functions/prompt_schrectacular_setup: prompt_schrectacular_setup
     # vim
     ~/.vimrc: vimrc
     ~/.vim/bundle/Vundle.vim: Vundle.vim
