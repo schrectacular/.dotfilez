@@ -90,8 +90,27 @@ set fileencodings+=prc
 " Oh, China.
 set langmenu=en_US.UTF-8 " sets the language of the menu (gvim)
 
-" keep a backup file
+" Keep a backup file
 set backup
+
+" Do not back up temporary files.
+set backupskip=/tmp/*,/private/tmp/*"
+
+" Store backup files in one place.
+set backupdir^=$HOME/.vim/backup//
+
+" Store swap files in one place.
+set dir^=$HOME/.vim/swap//
+
+" Store undo files in one place.
+set undodir^=$HOME/.vim/undo//
+
+" Store view files in one place.
+set viewdir=$HOME/.vim/view//
+
+" Save undo tree.
+set undofile
+
 " keep 1000 undo levels
 set undolevels=1000
 " display incomplete commands
@@ -113,59 +132,59 @@ set list!
 nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 "set listchars=tab:â€ºâ‚‹,eol:Â¬,trail:Â·,extends:Â»,precedes:Â«
-set listchars=tab:â€ºâ‚‹,eol:Â¬,trail:Â·,extends:Â»,precedes:Â«
+set listchars=tab:›₋,eol:¬,trail:·,extends:»,precedes:«
 set textwidth=0
 set wrapmargin=0
 
-" Coloring stuff
+" coloring stuff
 
 " set background=light
-" Vim won't complain if it can't find this
+" vim won't complain if it can't find this
 silent! colorscheme desert
 
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
+" switch syntax highlighting on, when the terminal has colors
+" also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")	"more than a 2 color gui
   syntax on
   set hlsearch
-  set guioptions-=T  "remove toolbar
+  set guioptions-=t  "remove toolbar
 endif
 
 if has("gui_macvim")
-  set guifont=Menlo\ Regular:h13
+  set guifont=Knack\ Regular\ Nerd\ Font\ Complete\ Mono:h12
 endif
 if has("win32") || has('win64')
-  set guifont=Consolas:h10
+  set guifont=consolas:h10
   "set window size to something bigger. This feels good on windows
   set lines=50 columns=120
   " fullscreen
-  " au GUIEnter * simalt ~x
+  " au guienter * simalt ~x
 endif
 
 if has("unix")
   let s:uname = system("uname")
-  if s:uname == "Darwin\n"
-    " Do Mac stuff here
+  if s:uname == "darwin\n"
+    " do mac stuff here
   endif
-  if s:uname == "Linux\n"
-    " Do Linux stuff here
+  if s:uname == "linux\n"
+    " do linux stuff here
   endif
 endif
 
-" Deprecated stuff:
+" deprecated stuff:
 
 " good for perl
 "set softtabstop=4 shiftwidth=4 expandtab
 
-" Set a more convinient map leader
+" set a more convinient map leader
 " let mapleader=','
 
-" Fast exit from insert mode by pressing jk simultaneously
-"inoremap kj <Esc>
-"inoremap jk <Esc>
+" fast exit from insert mode by pressing jk simultaneously
+"inoremap kj <esc>
+"inoremap jk <esc>
 
-" Don't move your fingers to arrow keys for history
-"cnoremap <C-k> <Up>
-"cnoremap <C-j> <Down>
+" don't move your fingers to arrow keys for history
+"cnoremap <c-k> <up>
+"cnoremap <c-j> <down>
 
 """""""""""""""""""""""""""""""" END MY STUFF """"""""""""""""""""""""""""""""

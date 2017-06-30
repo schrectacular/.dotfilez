@@ -26,7 +26,7 @@
     # ~/.zprezto/modules/prompt/functions/prompt_schrectacular_setup: prompt_schrectacular_setup
     # vim
     ~/.vimrc: vimrc
-    ~/.vim/bundle/Vundle.vim: Vundle.vim
+    ~/.vim/autoload/plug.vim: vim-plug/plug.vim
 
 # Homebrew stuff
 - tap: [caskroom/fonts]
@@ -64,5 +64,5 @@
     for dir in ${dirList[@]}; do
         mkdir -p ~/.vim/$dir
     done
-    # Install, then update all Vundle plugins
-  - vim +PluginInstall +PluginUpdate +qall
+    # Run vim with Plug. Have to wait, otherwise will exit before install complete
+  - vim +PlugInstall; wait
