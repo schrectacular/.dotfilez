@@ -36,6 +36,8 @@
 - cask: [macvim, iterm2]
 
 - shell:
+    # set hosts file
+  - sudo curl -o /etc/hosts https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
   - | # MacOS specific setup
     if [[ $(uname -a) =~ "Darwin" ]]; then
         bash macos    #sensible defaults for macos
