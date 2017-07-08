@@ -3,6 +3,7 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   Matt Schreck <mschreck@gmail.com>
 
 
 # Source Prezto.
@@ -13,7 +14,9 @@ fi
 # Customize to your needs...
 if [[ "$OSTYPE" == darwin* ]]; then
   alias v='mvim --remote-silent'
+  alias casku='sudo -v; brew cask outdated | xargs -L1 brew cask reinstall'
 fi
+
 
 # these change the cursor on the command line based on vi mode
 # should figure out some way to port this to my own theme
