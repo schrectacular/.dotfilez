@@ -5,15 +5,15 @@
 """ Startup Checks ························································{
 
 if has("win32") || has('win64')
-  "This is from vim wiki. Needs to be before plugins and will set folders on windows set 
-  runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+  "This is from vim wiki. Needs to be before plugins and will set folders on windows
+  set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
 endif 
 
 """ }
 
 """ Plugin Management ·····················································{
 
-call plug#begin()
+call plug#begin('~/.vim/plugged')
 
 " Sensible vim defaults from Mr. Pope
 Plug 'tpope/vim-sensible'
@@ -105,6 +105,8 @@ if has("win32") || has('win64')
         \ 'component_function': {
         \   'gitbranch': 'fugitive#head'
         \ },
+        \ 'separator': { 'left': '}', 'right': '{' },
+        \ 'subseparator': { 'left': '›', 'right': '‹' }
         \ }
 else
   let g:lightline = {
@@ -279,7 +281,7 @@ nmap <leader>l :set list!<CR>
 set winminheight=1
 
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:›₋,eol:¬,trail:·,extends:»,precedes:«
+set listchars=tab:?,eol:¬,trail:·,extends:»,precedes:«
 
 set textwidth=0
 
@@ -289,16 +291,15 @@ set wrapmargin=0
 set hlsearch
 
 " Remove toolbar if available
-set guioptions-=t  "remove toolbar
+set guioptions-=T  "remove toolbar
 
 if has("gui_macvim")
   set guifont=Knack\ Regular\ Nerd\ Font\ Complete:h12
 endif
 
-if has("win32") || has('win64')
+if has("windows")
   " Set font
   set guifont=consolas:h10
-
   " Set window size to something bigger. This feels good on windows
   set lines=50 columns=120
 endif
@@ -307,11 +308,13 @@ endif
 
 """ Color Schemes ·························································{
 
-" Use light background
-"set background=light
-
-" Silent so that Vim won't complain if it can't find this
-silent! colorscheme Tomorrow-Night
+" Silent so that Vim won't complain if plugins haven't been loaded yet
+if has("windows")
+  " Change colorscheme to something that looks better on windows
+  silent! colorscheme Tomorrow-Night-Eighties
+else
+  silent! colorscheme Tomorrow-Night
+endif
 
 """ }
 
@@ -326,6 +329,45 @@ silent! colorscheme Tomorrow-Night
 "    " do linux stuff here
 "  endif
 "endif
+
+if has("windows")
+  " CTRL-X and SHIFT-Del are Cut
+  vnoremap <C-X> "+x
+  vnoremap <S-Del> "+x
+
+  " CTRL-C and CTRL-Insert are Copy
+  vnoremap <C-C> "+y
+  vnoremap <C-Insert> "+y
+
+  " CTRL-V and SHIFT-Insert are Paste
+  map <C-V>       "+gP
+  map <S-Insert>      "+gP
+
+  cmap <C-V>      <C-R>+
+  cmap <S-Insert>     <C-R>+
+
+  " Pasting blockwise and linewise selections is not possible in Insert and
+  " Visual mode without the +virtualedit feature.  They are pasted as if they
+  " were characterwise instead.
+  " Uses the paste.vim autoload script.
+
+  exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+  exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+
+  imap <S-Insert>     <C-V>
+  vmap <S-Insert>     <C-V>
+
+  " Use CTRL-Q to do what CTRL-V used to do
+  noremap <C-Q>       <C-V>
+
+  " CTRL-A is Select all
+  noremap <C-A> gggH<C-O>G
+  inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
+  cnoremap <C-A> <C-C>gggH<C-O>G
+  onoremap <C-A> <C-C>gggH<C-O>G
+  snoremap <C-A> <C-C>gggH<C-O>G
+  xnoremap <C-A> <C-C>ggVG
+endif
 
 """ }
 
