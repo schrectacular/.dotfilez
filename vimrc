@@ -86,7 +86,7 @@ let g:rainbow_conf = {
       \ }
       \}
 
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 
 """" Lightline
 
@@ -145,7 +145,7 @@ function! MyFileformat()
 endfunction
 
 " Hide mode below status line
-set noshowmode
+"set noshowmode
 
 """" Tlist
 
@@ -281,7 +281,7 @@ nmap <leader>l :set list!<CR>
 set winminheight=1
 
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:?,eol:¬,trail:·,extends:»,precedes:«
+set listchars=tab:›₋,eol:¬,trail:·,extends:»,precedes:«
 
 set textwidth=0
 
@@ -293,11 +293,11 @@ set hlsearch
 " Remove toolbar if available
 set guioptions-=T  "remove toolbar
 
-if has("gui_macvim")
+if has('osx')
   set guifont=Knack\ Regular\ Nerd\ Font\ Complete:h12
 endif
 
-if has("windows")
+if has('win32') || has('win64')
   " Set font
   set guifont=consolas:h10
   " Set window size to something bigger. This feels good on windows
@@ -309,7 +309,7 @@ endif
 """ Color Schemes ·························································{
 
 " Silent so that Vim won't complain if plugins haven't been loaded yet
-if has("windows")
+if has('win32') || has('win64')
   " Change colorscheme to something that looks better on windows
   silent! colorscheme Tomorrow-Night-Eighties
 else
@@ -330,7 +330,7 @@ endif
 "  endif
 "endif
 
-if has("windows")
+if has('win32') || has('win64')
   " CTRL-X and SHIFT-Del are Cut
   vnoremap <C-X> "+x
   vnoremap <S-Del> "+x
