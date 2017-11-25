@@ -4,6 +4,7 @@
 
 """ Startup Checks ························································{
 
+
 if has("win32") || has('win64')
   "This is from vim wiki. Needs to be before plugins and will set folders on windows
   set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
@@ -59,7 +60,7 @@ Plug 'ryanoasis/vim-devicons'
 
 " Language plugins
 "Plug 'stephpy/vim-yaml', {'for':'yaml'}
-"Plug 'elixir-lang/vim-elixir', {'for':'elixir'}
+Plug 'elixir-lang/vim-elixir'
 
 call plug#end()
 
